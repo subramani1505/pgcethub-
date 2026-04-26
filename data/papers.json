@@ -18,36 +18,19 @@
             ]
         },
         {
-            "id": "civil-2023",
-            "title": "PGCET Civil Engineering 2023",
+            "id": "civil-2024-to-2020",
+            "title": "PGCET Civil Engineering 2024 to 2020",
             "branch": "civil",
             "branchName": "Civil Engineering",
-            "year": 2023,
-            "questions": 100,
-            "fileSize": "2.2 MB",
-            "filePath": "papers/civil/pgcet_civil_2023.pdf",
+            "year": "2024-2020",
+            "questions": 500,
+            "fileSize": "60 MB",
+            "filePath": "papers/civil/PGCET_2024_to_2020.pdf",
             "hasAnswerKey": true,
             "isPremium": true,
             "tags": [
                 "civil",
-                "2023",
-                "civil engineering"
-            ]
-        },
-        {
-            "id": "civil-2022",
-            "title": "PGCET Civil Engineering 2022",
-            "branch": "civil",
-            "branchName": "Civil Engineering",
-            "year": 2022,
-            "questions": 100,
-            "fileSize": "2.0 MB",
-            "filePath": "papers/civil/pgcet_civil_2022.pdf",
-            "hasAnswerKey": false,
-            "isPremium": false,
-            "tags": [
-                "civil",
-                "2022",
+                "2024-2020",
                 "civil engineering"
             ]
         }

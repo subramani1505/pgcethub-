@@ -255,8 +255,8 @@ async function renderBranchPapers() {
     return;
   }
 
-  // Sort by year descending (newest first)
-  branchPapers.sort((a, b) => b.year - a.year);
+  // Sort by year descending (newest first). Use parseInt to handle strings like '2024-2020'
+  branchPapers.sort((a, b) => parseInt(b.year) - parseInt(a.year));
 
   container.innerHTML = branchPapers.map(buildFullCard).join('');
 
