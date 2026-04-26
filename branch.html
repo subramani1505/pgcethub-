@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Branch Papers — PGCETHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Google Analytics Tracker (Replace G-XXXXXXXXXX with your actual ID later) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-392617732"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-392617732');
+    </script>
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">PGCET<span>Hub</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#branches">Branches</a></li>
+                <li><a href="index.html#papers">Papers</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#pricing" class="nav-cta">Go Premium</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ── BRANCH HERO ── -->
+    <section class="branch-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="index.html#branches">Branches</a>
+                <span>›</span>
+                <span id="breadcrumb-branch">Loading...</span>
+            </div>
+            <div class="branch-hero-inner">
+                <div class="branch-hero-icon" id="branch-hero-icon">💻</div>
+                <div>
+                    <h1 id="branch-hero-title">Loading...</h1>
+                    <p id="branch-hero-desc">Previous year PGCET question papers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── MAIN CONTENT ── -->
+    <div class="container" style="padding-top: 40px; padding-bottom: 64px;">
+        <div class="branch-layout">
+
+            <!-- LEFT: Papers list -->
+            <div class="branch-main">
+
+                <!-- Toolbar -->
+                <div class="papers-toolbar">
+                    <div class="papers-count">
+                        <span id="papers-count">0</span> papers found
+                    </div>
+                    <div class="toolbar-right">
+                        <select id="year-filter" class="filter-select" onchange="applyFilters()">
+                            <option value="all">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+                        <select id="type-filter" class="filter-select" onchange="applyFilters()">
+                            <option value="all">All Types</option>
+                            <option value="free">Free only</option>
+                            <option value="premium">With answer key</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Papers list rendered by JS -->
+                <div class="papers-list" id="branch-papers-list">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Loading papers...</p>
+                    </div>
+                </div>
+
+                <!-- Empty state -->
+                <div class="empty-state hidden" id="empty-state">
+                    <div style="font-size:3rem; margin-bottom:16px;">📭</div>
+                    <h3>No papers found</h3>
+                    <p>Try changing your filters or check back later.</p>
+                    <a href="index.html#branches" class="btn btn-outline mt-16">Browse other branches</a>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: Sidebar -->
+            <aside class="branch-sidebar">
+
+                <!-- Branch info card -->
+                <div class="sidebar-card">
+                    <h4>About this branch</h4>
+                    <div class="sidebar-stat-row">
+                        <span>Total papers</span>
+                        <strong id="sidebar-total">—</strong>
+                    </div>
+                    <div class="sidebar-stat-row">
+                        <span>Free papers</span>
+                        <strong id="sidebar-free" style="color:var(--green-main)">—</strong>
+                    </div>
+                    <div class="sidebar-stat-row">
+                        <span>Years covered</span>
+                        <strong id="sidebar-years">2018 – 2024</strong>
+                    </div>
+                    <div class="sidebar-stat-row">
+                        <span>Questions per paper</span>
+                        <strong>100</strong>
+                    </div>
+                </div>
+
+                <!-- Premium upsell card -->
+                <div class="sidebar-card sidebar-premium">
+                    <div class="sidebar-premium-tag">Premium</div>
+                    <h4 style="margin-bottom:8px; color:var(--green-darkest);">Unlock Answer Keys</h4>
+                    <p style="font-size:0.83rem; color:var(--green-mid); margin-bottom:16px;">
+                        Get detailed answer keys and solutions for all papers at just ₹99/year.
+                    </p>
+                    <ul
+                        style="font-size:0.82rem; color:var(--green-dark); margin-bottom:16px; display:flex; flex-direction:column; gap:6px;">
+                        <li>✓ All branches unlocked</li>
+                        <li>✓ Answer keys for every year</li>
+                        <li>✓ Detailed solutions</li>
+                        <li>✓ Topic-wise analysis</li>
+                    </ul>
+                    <a href="index.html#pricing" class="btn btn-primary" style="width:100%; justify-content:center;">
+                        Get Premium — ₹99/yr
+                    </a>
+                </div>
+
+                <!-- Other branches card -->
+                <div class="sidebar-card">
+                    <h4 style="margin-bottom:14px;">Other Branches</h4>
+                    <div class="other-branches" id="other-branches">
+                        <a href="branch.html?branch=cs" class="other-branch-link">💻 Computer Science</a>
+                        <a href="branch.html?branch=civil" class="other-branch-link">🏗️ Civil Engineering</a>
+                        <a href="branch.html?branch=mech" class="other-branch-link">⚙️ Mechanical</a>
+                        <a href="branch.html?branch=ece" class="other-branch-link">📡 ECE</a>
+                        <a href="branch.html?branch=eee" class="other-branch-link">⚡ EEE</a>
+                        <a href="branch.html?branch=chemical" class="other-branch-link">🧪 Chemical</a>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+    <!-- ── PDF PREVIEW MODAL ── -->
+    <div class="modal-overlay hidden" id="pdf-preview-overlay" onclick="closePdfPreview()">
+        <div class="pdf-modal-box" onclick="event.stopPropagation()">
+            <div class="pdf-modal-header">
+                <div class="pdf-modal-title-wrap">
+                    <span style="font-size:1.4rem;">📄</span>
+                    <h3 class="pdf-modal-title" id="pdf-modal-title">Question Paper</h3>
+                </div>
+                <div class="pdf-modal-actions">
+                    <a id="pdf-download-btn" href="#" download class="btn btn-primary"
+                        style="font-size:0.85rem; padding:8px 18px;">
+                        ⬇ Download PDF
+                    </a>
+                    <button class="modal-close" onclick="closePdfPreview()">✕</button>
+                </div>
+            </div>
+            <div class="pdf-iframe-wrap">
+                <iframe id="pdf-preview-frame" src="" title="PDF Preview" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── PREMIUM PAYMENT MODAL (3 steps) ── -->
+    <div class="modal-overlay hidden" id="modal-overlay" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+
+            <!-- STEP 1: Benefits -->
+            <div id="pay-step-1">
+                <div style="font-size:2.5rem; margin-bottom:12px;">🔒</div>
+                <h3 style="margin-bottom:8px;">Unlock Premium Papers</h3>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:20px;">
+                    Get answer keys &amp; solutions for every branch &amp; year — just ₹99/year.
+                </p>
+                <ul class="pricing-features" style="margin-bottom:24px; text-align:left;">
+                    <li>All question papers (free + premium)</li>
+                    <li>Answer keys for every year</li>
+                    <li>Detailed solutions</li>
+                    <li>All branches unlocked</li>
+                </ul>
+                <button onclick="payStep(2)" class="btn btn-primary"
+                    style="width:100%; justify-content:center; font-size:1rem; padding:13px;">
+                    📲 Pay ₹99 with PhonePe
+                </button>
+                <button onclick="payStep('code')" class="btn btn-outline mt-16"
+                    style="width:100%; justify-content:center;">
+                    Already paid? Enter access code
+                </button>
+                <button onclick="closeModal()" class="btn"
+                    style="width:100%; justify-content:center; margin-top:8px; color:var(--text-muted); font-size:0.85rem;">
+                    Maybe later
+                </button>
+            </div>
+
+            <!-- STEP 2: PhonePe QR -->
+            <div id="pay-step-2" class="hidden">
+                <div class="pay-step-header">
+                    <button onclick="payStep(1)" class="pay-back-btn">← Back</button>
+                    <h3>Scan &amp; Pay ₹99</h3>
+                </div>
+                <div class="qr-wrap">
+                    <img src="assets/phonepay-qr.png" alt="PhonePe QR Code" class="qr-img" />
+                </div>
+                <div class="upi-detail">
+                    <span class="upi-label">UPI ID</span>
+                    <span class="upi-value" id="upi-id-text">8494950336@ibl</span>
+                    <button onclick="copyUpi()" class="copy-btn" id="copy-upi-btn">Copy</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin: 12px 0;">
+                    After payment, WhatsApp your screenshot to +918494950336 to get your access code.
+                </p>
+                <a href="https://wa.me/918494950336?text=Hi!%20I%20just%20paid%20₹99%20for%20PGCETHub%20Premium.%20Please%20send%20my%20access%20code."
+                    target="_blank" class="btn"
+                    style="width:100%; justify-content:center; background:#25D366; color:#fff; margin-bottom:12px;">
+                    💬 Share Screenshot on WhatsApp
+                </a>
+                <button onclick="payStep('code')" class="btn btn-primary" style="width:100%; justify-content:center;">
+                    I've paid — Enter Access Code →
+                </button>
+            </div>
+
+            <!-- STEP 3: Enter Code -->
+            <div id="pay-step-code" class="hidden">
+                <div class="pay-step-header">
+                    <button onclick="payStep(2)" class="pay-back-btn">← Back</button>
+                    <h3>Enter Access Code</h3>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:20px;">
+                    You will receive this code on WhatsApp after we verify your payment.
+                </p>
+                <div class="code-input-wrap">
+                    <input type="text" id="access-code-input" class="code-input" placeholder="e.g. PGCET-XXXX"
+                        maxlength="20" autocomplete="off" />
+                    <p class="code-error hidden" id="code-error">❌ Invalid code. Please check and try again.</p>
+                </div>
+                <button onclick="submitAccessCode()" class="btn btn-primary"
+                    style="width:100%; justify-content:center; margin-top:16px;">
+                    Unlock Premium 🔓
+                </button>
+            </div>
+
+            <!-- STEP SUCCESS -->
+            <div id="pay-step-success" class="hidden">
+                <div style="font-size:3rem; margin-bottom:16px;">🎉</div>
+                <h3 style="color:var(--green-main); margin-bottom:8px;">Premium Unlocked!</h3>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:24px;">
+                    You now have full access to all answer keys and premium papers.
+                </p>
+                <button onclick="closeModal(); location.reload();" class="btn btn-primary"
+                    style="width:100%; justify-content:center;">
+                    View Premium Papers →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">PGCET<span>Hub</span></div>
+                    <p class="footer-desc">Free PGCET previous year question papers for all Karnataka engineering
+                        branches.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Branches</h4>
+                    <ul>
+                        <!-- <li><a href="branch.html?branch=cs">Computer Science</a></li> -->
+                        <li><a href="branch.html?branch=civil">Civil Engineering</a></li>
+                        <!-- <li><a href="branch.html?branch=mech">Mechanical</a></li>
+                        <li><a href="branch.html?branch=ece">ECE</a></li>
+                        <li><a href="branch.html?branch=eee">EEE</a></li> -->
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#pricing">Premium</a></li>
+                        <li><a href="mailto:you@email.com">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 PGCETHub · Made with ❤️ for PGCET students in Karnataka
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/papers.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
